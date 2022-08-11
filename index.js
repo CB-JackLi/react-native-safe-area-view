@@ -23,6 +23,10 @@ const IPADPRO11_HEIGHT = 1194;
 const IPADPRO129_HEIGHT = 1024;
 const IPADPRO129_WIDTH = 1366;
 
+const IPHONE12_H = 844;
+const IPHONE12_Max = 926;
+const IPHONE12_Mini = 780;
+
 const getResolvedDimensions = () => {
   const { width, height } = Dimensions.get('window');
   if (width === 0 && height === 0) return Dimensions.get('screen');
@@ -38,11 +42,12 @@ const isIPhoneX = (() => {
   if (Platform.OS === 'web') return false;
 
   return (
-    (Platform.OS === 'ios' &&
-      ((D_HEIGHT === X_HEIGHT && D_WIDTH === X_WIDTH) ||
-        (D_HEIGHT === X_WIDTH && D_WIDTH === X_HEIGHT))) ||
+    Platform.OS === 'ios' &&
+    ((D_HEIGHT === X_HEIGHT && D_WIDTH === X_WIDTH) ||
+      (D_HEIGHT === X_WIDTH && D_WIDTH === X_HEIGHT)) ||
     ((D_HEIGHT === XSMAX_HEIGHT && D_WIDTH === XSMAX_WIDTH) ||
-      (D_HEIGHT === XSMAX_WIDTH && D_WIDTH === XSMAX_HEIGHT))
+          (D_HEIGHT === XSMAX_WIDTH && D_WIDTH === XSMAX_HEIGHT)) ||
+      (D_HEIGHT === IPHONE12_H) || (D_HEIGHT === IPHONE12_Max) || (D_HEIGHT === IPHONE12_Mini)
   );
 })();
 
